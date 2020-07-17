@@ -12,11 +12,11 @@ const port = 3000;
 
 // TODO: Fill with strings of your favorite quotes :)
 const quotes = [
-  'one',
-  'two',
-  'three',
-  'four',
-  'five'
+  'Catch a man, feed him for a day. Teach a man to fish, feed him for life',
+  'A man never walks thrpough the same river twice, for he is not the same man, and it is nopt the same river',
+  'Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured.',
+  'All generalizations are false, including this one.',
+  'When we remember we are all mad, the mysteries disappear and life stands explained.'
 ];
 
 //Utility Function to return a random integer
@@ -37,13 +37,20 @@ const handleRequest = function(req, res) {
   }
 
   // TODO: GET ONE
-  if ((req.url == '/quote/' || req.url == '/quote') && req.method == "FILL ME IN") {
-    //YOUR CODE HERE
-
+  if ((req.url == '/quote/' || req.url == '/quote') && req.method == "GET") {
+    let quote = quotes[getRandomInt(0, quotes.length)];
+    res.writeHead(200, headers);
+    res.end(quote);
+     // find a quote from list of quotes randomly
+    // send quote back w correct headers - url/ method
+    // make sure quote gets back in res.end
   }
   // TODO: POST/CREATE
-  else if ((req.url == 'FILL ME IN' || req.url == 'FILL ME IN') && req.method == "FILL ME IN") {
+  else if ((req.url == '/quote/' || req.url == '/quote') && req.method == "POST") {
     //YOUR CODE HERE
+    // req.on ??
+    // extract quote from request
+    // push into quote
   }
 
 //CATCH ALL ROUTE
