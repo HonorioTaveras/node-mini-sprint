@@ -13,23 +13,19 @@ $(document).ready(function() {
   function getQuote(){
 
     //YOUR CODE HERE, Add a GET request
-    $.get("http://localhost:3000/quote",
-      function (data, textStatus, jqXHR) {
-        console.log(data);
-      },
-      "string"
+    $.get("http://localhost:3000/quote", data => {
+        console.log('data: ', data);
+        $('quote').append(data);
+      }
     );
-
   }
 
   function addQuote(quote){
 
     //YOUR CODE HERE, Add a POST request
-    $.post("http://localhost:3000/", quote,
-      function (data, textStatus, jqXHR) {
-
-      },
-      "string"
-    );
+    $.post("http://localhost:3000/", quote, response => {
+      $('form').reset();
+      $('response').text(`Thanks for your submission ${response}`);
+    });
   }
 });

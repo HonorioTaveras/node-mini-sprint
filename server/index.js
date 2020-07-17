@@ -38,19 +38,26 @@ const handleRequest = function(req, res) {
 
   // TODO: GET ONE
   if ((req.url == '/quote/' || req.url == '/quote') && req.method == "GET") {
+    console.log('made it to get route!');
     let quote = quotes[getRandomInt(0, quotes.length)];
-    res.writeHead(200, headers);
-    res.end(quote);
-     // find a quote from list of quotes randomly
-    // send quote back w correct headers - url/ method
-    // make sure quote gets back in res.end
+    req.writeHead(200, headers);
+    req.end(quote);
   }
   // TODO: POST/CREATE
   else if ((req.url == '/quote/' || req.url == '/quote') && req.method == "POST") {
     //YOUR CODE HERE
+    console.log('made it to post route');
+    let body = '';
     // req.on ??
     // extract quote from request
-    // push into quote
+    res.on('data', (chunk) => {
+      // concat to body
+      body += chunk;
+    });
+    res.on('end', () => {
+      req.writeHead(200, headers);
+      res.end(body);
+    });
   }
 
 //CATCH ALL ROUTE
